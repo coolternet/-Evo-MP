@@ -85,17 +85,16 @@
 |------------|---------|-------------|
 | **Socket.IO** | 4.x+ | Mode Cinema (synchronisation) |
 | **Font Awesome** | 6.4.0+ | Icônes |
-| **Bootstrap 5** | 5.3.8+ | Styles de base (optionnel) |
 
 ### Fichiers nécessaires
 
 ```
 assets/
-├── js/
-│   └── EvoMediaPlayer.js    # Fichier principal (2005 lignes)
-└── css/
-    └── EvoMediaPlayer.css   # Styles CSS (optionnel si CSS inline)
+└── js/
+    └── EvoMediaPlayer.js    # Fichier principal (2005 lignes)
 ```
+
+**Note :** Le CSS est généré dynamiquement et inclus directement dans le JavaScript. Aucun fichier CSS externe n'est requis.
 
 ---
 
@@ -110,32 +109,22 @@ assets/
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Bootstrap CSS (optionnel) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <!-- Font Awesome (pour les icônes) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- EvoMediaPlayer CSS (si vous utilisez un fichier externe) -->
-    <link href="/assets/css/EvoMediaPlayer.css" rel="stylesheet">
 </head>
 <body>
     <!-- Votre contenu -->
     
-    <!-- Socket.IO (requis pour mode cinema) -->
+    <!-- Socket.IO (requis pour mode cinema uniquement) -->
     <script src="/socket.io/socket.io.js"></script>
-    
-    <!-- Bootstrap JS (optionnel) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- EvoMediaPlayer JS -->
     <script src="/assets/js/EvoMediaPlayer.js"></script>
-    
-    <!-- Votre code JavaScript -->
-    <script src="/app.js"></script>
 </body>
 </html>
 ```
+
+**Note :** Le CSS est généré automatiquement et inclus dans le JavaScript. Aucun fichier CSS externe n'est nécessaire.
 
 ### 2. Initialisation de base
 
@@ -492,6 +481,8 @@ Affiche une modale avec les informations du média.
 player.showInfo();
 ```
 
+**Note :** Cette méthode crée une modale HTML simple avec les informations du média.
+
 ---
 
 ### Synchronisation (Mode Cinema uniquement)
@@ -714,7 +705,6 @@ this.musicMatchAPIKey = 'VOTRE_CLE_API_MUSICMATCH';
     <meta charset="UTF-8">
     <title>Lecteur Audio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="/assets/css/EvoMediaPlayer.css" rel="stylesheet">
 </head>
 <body>
     <button onclick="playAudio()">Lire un fichier audio</button>
@@ -778,15 +768,12 @@ this.musicMatchAPIKey = 'VOTRE_CLE_API_MUSICMATCH';
 <head>
     <meta charset="UTF-8">
     <title>Cinéma P2P</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="/assets/css/EvoMediaPlayer.css" rel="stylesheet">
 </head>
 <body>
     <button onclick="createCinemaRoom()">Créer une salle</button>
     
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/EvoMediaPlayer.js"></script>
     <script>
         const socket = io();
@@ -992,10 +979,9 @@ L'objet `state` contient :
 
 ### CSS
 
-Le CSS est généré dynamiquement via `_getPlayerCSS()`. Pour personnaliser :
+Le CSS est généré dynamiquement via `_getPlayerCSS()` et inclus directement dans le JavaScript. Pour personnaliser :
 
-1. **Modifier directement dans le code** : Éditez la méthode `_getPlayerCSS()` (lignes 377-887)
-2. **Utiliser un fichier externe** : Créez `EvoMediaPlayer.css` et supprimez l'appel à `_getPlayerCSS()`
+**Modifier directement dans le code** : Éditez la méthode `_getPlayerCSS()` (lignes 377-887) dans le fichier `EvoMediaPlayer.js`
 
 ### Parsing des noms de fichiers
 
