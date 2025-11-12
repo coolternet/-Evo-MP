@@ -79,14 +79,14 @@
 
 ## 📦 Prérequis
 
-### Dépendances JavaScript
+### 📚 Dépendances JavaScript
 
 | Dépendance | Version | Requis pour |
 |------------|---------|-------------|
-| **Socket.IO** | 4.x+ | Mode Cinema (synchronisation) |
-| **Font Awesome** | 6.4.0+ | Icônes |
+| **🔌 Socket.IO** | 4.x+ | Mode Cinema (synchronisation) |
+| **🎨 Font Awesome** | 6.4.0+ | Icônes |
 
-### Fichiers nécessaires
+### 📁 Fichiers nécessaires
 
 ```
 assets/
@@ -94,13 +94,13 @@ assets/
     └── EvoMediaPlayer.js    # Fichier principal (2005 lignes)
 ```
 
-**Note :** Le CSS est généré dynamiquement et inclus directement dans le JavaScript. Aucun fichier CSS externe n'est requis.
+> 💡 **Note :** Le CSS est généré dynamiquement et inclus directement dans le JavaScript. Aucun fichier CSS externe n'est requis.
 
 ---
 
 ## 🚀 Installation
 
-### 1. Inclure les fichiers dans votre HTML
+### 1️⃣ Inclure les fichiers dans votre HTML
 
 ```html
 <!DOCTYPE html>
@@ -120,13 +120,16 @@ assets/
     
     <!-- EvoMediaPlayer JS -->
     <script src="/assets/js/EvoMediaPlayer.js"></script>
+    
+    <!-- Votre code JavaScript -->
+    <script src="/app.js"></script>
 </body>
 </html>
 ```
 
-**Note :** Le CSS est généré automatiquement et inclus dans le JavaScript. Aucun fichier CSS externe n'est nécessaire.
+> 💡 **Note :** Le CSS est généré automatiquement et inclus dans le JavaScript. Aucun fichier CSS externe n'est nécessaire.
 
-### 2. Initialisation de base
+### 2️⃣ Initialisation de base
 
 ```javascript
 // Créer une instance du lecteur
@@ -139,7 +142,7 @@ const evoPlayer = new EvoMediaPlayer(clientInstance, socketInstance);
 
 ## 💻 Utilisation
 
-### Mode Audio
+### 🎵 Mode Audio
 
 Pour lire un fichier audio :
 
@@ -168,7 +171,7 @@ evoPlayer.init('audio', {
 });
 ```
 
-### Mode Cinema
+### 🎬 Mode Cinema
 
 Pour créer une salle de cinéma et lire une vidéo :
 
@@ -210,19 +213,19 @@ evoPlayer.init('cinema', {
 
 ## 📚 API Reference
 
-### Constructeur
+### 🏗️ Constructeur
 
 ```javascript
 new EvoMediaPlayer(clientInstance, socketInstance)
 ```
 
-**Paramètres :**
+**📥 Paramètres :**
 - `clientInstance` (Object|null) : Instance de votre client application
-  - Doit implémenter : `getMediaType(filename, mimeType)`, `addMessage(type, message)`
-  - Optionnel : `createCinemaChat()`, `closeCinemaRoom()`, `leaveCinemaRoom()`
+  - ✅ Doit implémenter : `getMediaType(filename, mimeType)`, `addMessage(type, message)`
+  - 🔧 Optionnel : `createCinemaChat()`, `closeCinemaRoom()`, `leaveCinemaRoom()`
 - `socketInstance` (Object|null) : Instance Socket.IO pour la synchronisation (mode cinema)
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 const client = {
     getMediaType: (filename, mimeType) => {
@@ -239,23 +242,23 @@ const player = new EvoMediaPlayer(client, socket);
 
 ---
 
-### Méthodes principales
+### 🔧 Méthodes principales
 
-#### `init(mode, options)`
+#### `init(mode, options)` 🚀
 
 Initialise le lecteur avec un mode spécifique.
 
-**Paramètres :**
-- `mode` (string) : `'cinema'` ou `'audio'`
+**📥 Paramètres :**
+- `mode` (string) : `'cinema'` 🎬 ou `'audio'` 🎵
 - `options` (Object) :
-  - `fileId` (string) : ID unique du fichier
-  - `fileData` (Object) : Données du fichier (voir structure ci-dessous)
-  - `metadata` (Object) : Métadonnées du média (voir structure ci-dessous)
-  - `isHost` (boolean) : Si true, l'utilisateur est l'hôte (cinema uniquement)
-  - `roomInfo` (Object) : Informations de la salle (cinema uniquement)
-  - `autoplay` (boolean) : Lecture automatique (défaut: false)
+  - `fileId` (string) : 🆔 ID unique du fichier
+  - `fileData` (Object) : 📄 Données du fichier (voir structure ci-dessous)
+  - `metadata` (Object) : 📋 Métadonnées du média (voir structure ci-dessous)
+  - `isHost` (boolean) : 👑 Si true, l'utilisateur est l'hôte (cinema uniquement)
+  - `roomInfo` (Object) : 🏠 Informations de la salle (cinema uniquement)
+  - `autoplay` (boolean) : ▶️ Lecture automatique (défaut: false)
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 player.init('audio', {
     fileId: 'audio-1',
@@ -267,26 +270,26 @@ player.init('audio', {
 
 ---
 
-#### `loadMedia(fileId, fileData, metadata, autoplay)`
+#### `loadMedia(fileId, fileData, metadata, autoplay)` 📥
 
 Charge un nouveau média dans le lecteur.
 
-**Paramètres :**
-- `fileId` (string) : ID unique du fichier
-- `fileData` (Object) : Données du fichier
-- `metadata` (Object) : Métadonnées du média (optionnel)
-- `autoplay` (boolean) : Lecture automatique (défaut: false)
+**📥 Paramètres :**
+- `fileId` (string) : 🆔 ID unique du fichier
+- `fileData` (Object) : 📄 Données du fichier
+- `metadata` (Object) : 📋 Métadonnées du média (optionnel)
+- `autoplay` (boolean) : ▶️ Lecture automatique (défaut: false)
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 player.loadMedia('file-123', fileData, metadata, true);
 ```
 
 ---
 
-### Contrôles de lecture
+### ⏯️ Contrôles de lecture
 
-#### `play()`
+#### `play()` ▶️
 
 Démarre la lecture du média.
 
@@ -294,11 +297,11 @@ Démarre la lecture du média.
 await player.play();
 ```
 
-**Retourne :** Promise (peut être rejetée si autoplay bloqué)
+**📤 Retourne :** Promise (peut être rejetée si autoplay bloqué)
 
 ---
 
-#### `pause()`
+#### `pause()` ⏸️
 
 Met en pause la lecture.
 
@@ -308,7 +311,7 @@ player.pause();
 
 ---
 
-#### `stop()`
+#### `stop()` ⏹️
 
 Arrête la lecture et remet à zéro.
 
@@ -318,7 +321,7 @@ player.stop();
 
 ---
 
-#### `togglePlayPause()`
+#### `togglePlayPause()` ⏯️
 
 Bascule entre lecture et pause.
 
@@ -328,56 +331,56 @@ player.togglePlayPause();
 
 ---
 
-#### `seek(time)`
+#### `seek(time)` ⏩
 
 Va à une position spécifique dans le média.
 
-**Paramètres :**
-- `time` (number) : Temps en secondes
+**📥 Paramètres :**
+- `time` (number) : ⏱️ Temps en secondes
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 player.seek(120); // Aller à 2 minutes
 ```
 
 ---
 
-#### `rewind(seconds)`
+#### `rewind(seconds)` ⏪
 
 Recule de X secondes.
 
-**Paramètres :**
-- `seconds` (number) : Nombre de secondes (défaut: 10)
+**📥 Paramètres :**
+- `seconds` (number) : ⏱️ Nombre de secondes (défaut: 10)
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 player.rewind(10); // Reculer de 10 secondes
 ```
 
 ---
 
-#### `forward(seconds)`
+#### `forward(seconds)` ⏩
 
 Avance de X secondes.
 
-**Paramètres :**
-- `seconds` (number) : Nombre de secondes (défaut: 10)
+**📥 Paramètres :**
+- `seconds` (number) : ⏱️ Nombre de secondes (défaut: 10)
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 player.forward(10); // Avancer de 10 secondes
 ```
 
 ---
 
-### Gestion du mode
+### 🔄 Gestion du mode
 
-#### `setMode(mode)`
+#### `setMode(mode)` 🔀
 
 Change le mode du lecteur.
 
-**Paramètres :**
-- `mode` (string) : `'cinema'` ou `'audio'`
+**📥 Paramètres :**
+- `mode` (string) : `'cinema'` 🎬 ou `'audio'` 🎵
 
 ```javascript
 player.setMode('audio');
@@ -385,9 +388,9 @@ player.setMode('audio');
 
 ---
 
-### Chat (Mode Cinema uniquement)
+### 💬 Chat (Mode Cinema uniquement)
 
-#### `toggleChat()`
+#### `toggleChat()` 💬
 
 Affiche/Masque le chat.
 
@@ -397,7 +400,7 @@ player.toggleChat();
 
 ---
 
-#### `showChat()`
+#### `showChat()` 👁️
 
 Affiche le chat.
 
@@ -407,7 +410,7 @@ player.showChat();
 
 ---
 
-#### `hideChat()`
+#### `hideChat()` 🙈
 
 Masque le chat.
 
@@ -417,7 +420,7 @@ player.hideChat();
 
 ---
 
-#### `toggleChatPin()`
+#### `toggleChatPin()` 📌
 
 Épingle/Désépingle le chat.
 
@@ -427,9 +430,9 @@ player.toggleChatPin();
 
 ---
 
-### Plein écran
+### 🖥️ Plein écran
 
-#### `toggleFullscreen()`
+#### `toggleFullscreen()` 🔲
 
 Active/Désactive le mode plein écran.
 
@@ -439,7 +442,7 @@ player.toggleFullscreen();
 
 ---
 
-#### `enterFullscreen()`
+#### `enterFullscreen()` ⛶
 
 Active le mode plein écran.
 
@@ -449,7 +452,7 @@ player.enterFullscreen();
 
 ---
 
-#### `exitFullscreen()`
+#### `exitFullscreen()` ⛶
 
 Désactive le mode plein écran.
 
@@ -459,9 +462,9 @@ player.exitFullscreen();
 
 ---
 
-### Lyrics (Mode Audio uniquement)
+### 🎤 Lyrics (Mode Audio uniquement)
 
-#### `toggleLyrics()`
+#### `toggleLyrics()` 🎤
 
 Affiche/Masque le panneau de lyrics.
 
@@ -471,9 +474,9 @@ player.toggleLyrics();
 
 ---
 
-### Informations
+### ℹ️ Informations
 
-#### `showInfo()`
+#### `showInfo()` ℹ️
 
 Affiche une modale avec les informations du média.
 
@@ -481,13 +484,13 @@ Affiche une modale avec les informations du média.
 player.showInfo();
 ```
 
-**Note :** Cette méthode crée une modale HTML simple avec les informations du média.
+> 💡 **Note :** Cette méthode crée une modale HTML simple avec les informations du média.
 
 ---
 
-### Synchronisation (Mode Cinema uniquement)
+### 🔄 Synchronisation (Mode Cinema uniquement)
 
-#### `startSync()`
+#### `startSync()` ▶️
 
 Démarre la synchronisation (pour l'hôte).
 
@@ -495,11 +498,11 @@ Démarre la synchronisation (pour l'hôte).
 player.startSync();
 ```
 
-**Note :** Envoie les données de synchronisation toutes les secondes via Socket.IO.
+> 💡 **Note :** Envoie les données de synchronisation toutes les secondes via Socket.IO.
 
 ---
 
-#### `stopSync()`
+#### `stopSync()` ⏹️
 
 Arrête la synchronisation.
 
@@ -509,17 +512,17 @@ player.stopSync();
 
 ---
 
-#### `handleSync(data)`
+#### `handleSync(data)` 📡
 
 Gère un événement de synchronisation reçu.
 
-**Paramètres :**
-- `data` (Object) : Données de synchronisation
-  - `currentTime` (number) : Temps actuel en secondes
-  - `isPlaying` (boolean) : État de lecture
-  - `volume` (number) : Volume (0-1)
+**📥 Paramètres :**
+- `data` (Object) : 📦 Données de synchronisation
+  - `currentTime` (number) : ⏱️ Temps actuel en secondes
+  - `isPlaying` (boolean) : ▶️ État de lecture
+  - `volume` (number) : 🔊 Volume (0-1)
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 // Écouter les événements Socket.IO
 socket.on('cinema-sync-received', (data) => {
@@ -529,9 +532,9 @@ socket.on('cinema-sync-received', (data) => {
 
 ---
 
-### Nettoyage
+### 🧹 Nettoyage
 
-#### `destroy()`
+#### `destroy()` 🗑️
 
 Détruit le lecteur et nettoie toutes les ressources.
 
@@ -539,13 +542,13 @@ Détruit le lecteur et nettoie toutes les ressources.
 player.destroy();
 ```
 
-**Important :** Toujours appeler cette méthode avant de créer une nouvelle instance pour éviter les fuites mémoire.
+> ⚠️ **Important :** Toujours appeler cette méthode avant de créer une nouvelle instance pour éviter les fuites mémoire.
 
 ---
 
-### Méthodes statiques (Démo)
+### 🎮 Méthodes statiques (Démo)
 
-#### `EvoMediaPlayer.initDemoPage()`
+#### `EvoMediaPlayer.initDemoPage()` 🎬
 
 Initialise une page de démonstration.
 
@@ -555,14 +558,14 @@ EvoMediaPlayer.initDemoPage();
 
 ---
 
-#### `EvoMediaPlayer.loadDemoAudio(client, socket, audioUrl)`
+#### `EvoMediaPlayer.loadDemoAudio(client, socket, audioUrl)` 🎵
 
 Charge un fichier audio de démonstration.
 
-**Paramètres :**
-- `client` (Object) : Instance client
-- `socket` (Object) : Instance Socket.IO
-- `audioUrl` (string) : URL du fichier audio (optionnel)
+**📥 Paramètres :**
+- `client` (Object) : 👤 Instance client
+- `socket` (Object) : 🔌 Instance Socket.IO
+- `audioUrl` (string) : 🎵 URL du fichier audio (optionnel)
 
 ```javascript
 EvoMediaPlayer.loadDemoAudio(client, socket, '/audio/demo.mp3');
@@ -570,14 +573,14 @@ EvoMediaPlayer.loadDemoAudio(client, socket, '/audio/demo.mp3');
 
 ---
 
-#### `EvoMediaPlayer.loadDemoCinema(client, socket, videoUrl)`
+#### `EvoMediaPlayer.loadDemoCinema(client, socket, videoUrl)` 🎬
 
 Charge une vidéo de démonstration.
 
-**Paramètres :**
-- `client` (Object) : Instance client
-- `socket` (Object) : Instance Socket.IO
-- `videoUrl` (string) : URL de la vidéo (optionnel)
+**📥 Paramètres :**
+- `client` (Object) : 👤 Instance client
+- `socket` (Object) : 🔌 Instance Socket.IO
+- `videoUrl` (string) : 🎥 URL de la vidéo (optionnel)
 
 ```javascript
 EvoMediaPlayer.loadDemoCinema(client, socket, 'https://example.com/video.mp4');
@@ -587,7 +590,7 @@ EvoMediaPlayer.loadDemoCinema(client, socket, 'https://example.com/video.mp4');
 
 ## 📊 Structure des données
 
-### fileData
+### 📄 fileData
 
 L'objet `fileData` doit contenir :
 
@@ -605,7 +608,7 @@ L'objet `fileData` doit contenir :
 }
 ```
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 const fileData = {
     id: 'file-123',
@@ -619,7 +622,7 @@ const fileData = {
 
 ---
 
-### metadata
+### 📋 metadata
 
 L'objet `metadata` peut contenir :
 
@@ -635,7 +638,7 @@ L'objet `metadata` peut contenir :
 }
 ```
 
-**Exemple :**
+**💡 Exemple :**
 ```javascript
 const metadata = {
     title: 'Bohemian Rhapsody',
@@ -646,7 +649,7 @@ const metadata = {
 
 ---
 
-### roomInfo (Mode Cinema uniquement)
+### 🏠 roomInfo (Mode Cinema uniquement)
 
 L'objet `roomInfo` doit contenir :
 
@@ -665,28 +668,28 @@ L'objet `roomInfo` doit contenir :
 
 ## 🎨 Configuration
 
-### Récupération des couvertures
+### 🖼️ Récupération des couvertures
 
 Le lecteur récupère automatiquement les couvertures :
 
-- **Vidéos** : Utilise l'API OMDB (Open Movie Database)
-  - Clé API intégrée : `6166739b` (peut être modifiée dans le code)
-  - Recherche par titre et année
+- **🎬 Vidéos** : Utilise l'API OMDB (Open Movie Database)
+  - 🔑 Clé API intégrée : `6166739b` (peut être modifiée dans le code)
+  - 🔍 Recherche par titre et année
 
-- **Audio** : Utilise l'API MusicBrainz (Cover Art Archive)
-  - Recherche par artiste et titre
-  - Rate limiting : 1 requête par seconde
+- **🎵 Audio** : Utilise l'API MusicBrainz (Cover Art Archive)
+  - 🔍 Recherche par artiste et titre
+  - ⏱️ Rate limiting : 1 requête par seconde
 
-### Récupération des lyrics
+### 🎤 Récupération des lyrics
 
 Le lecteur recherche les paroles via :
 
-- **MusicMatch API** : Utilise des proxies CORS
-  - Clé API : `TA_CLE_API_MUSICMATCH` (à configurer)
-  - Proxies utilisés : `corsproxy.io`, `api.codetabs.com`
-  - Cache intégré pour éviter les requêtes répétées
+- **🎵 MusicMatch API** : Utilise des proxies CORS
+  - 🔑 Clé API : `TA_CLE_API_MUSICMATCH` (à configurer)
+  - 🌐 Proxies utilisés : `corsproxy.io`, `api.codetabs.com`
+  - 💾 Cache intégré pour éviter les requêtes répétées
 
-**Configuration de la clé API :**
+**⚙️ Configuration de la clé API :**
 ```javascript
 // Dans EvoMediaPlayer.js, ligne 234
 this.musicMatchAPIKey = 'VOTRE_CLE_API_MUSICMATCH';
@@ -696,7 +699,7 @@ this.musicMatchAPIKey = 'VOTRE_CLE_API_MUSICMATCH';
 
 ## 📖 Exemples
 
-### Exemple 1 : Lecteur audio simple
+### 📝 Exemple 1 : Lecteur audio simple 🎵
 
 ```html
 <!DOCTYPE html>
@@ -760,7 +763,7 @@ this.musicMatchAPIKey = 'VOTRE_CLE_API_MUSICMATCH';
 
 ---
 
-### Exemple 2 : Lecteur vidéo avec synchronisation
+### 📝 Exemple 2 : Lecteur vidéo avec synchronisation 🎬
 
 ```html
 <!DOCTYPE html>
@@ -856,7 +859,7 @@ this.musicMatchAPIKey = 'VOTRE_CLE_API_MUSICMATCH';
 
 ---
 
-### Exemple 3 : Utilisation avec fichiers locaux
+### 📝 Exemple 3 : Utilisation avec fichiers locaux 📁
 
 ```javascript
 const fileInput = document.getElementById('fileInput');
@@ -899,61 +902,61 @@ fileInput.addEventListener('change', (e) => {
 
 ## 🏗️ Structure du code
 
-### Architecture
+### 🏛️ Architecture
 
 Le fichier `EvoMediaPlayer.js` (2005 lignes) est organisé en plusieurs sections :
 
-1. **Méthodes statiques** (lignes 10-204)
-   - `initDemoPage()` : Initialisation de la page de démo
-   - `setupDemoEvents()` : Configuration des événements de démo
-   - `loadLocalFile()` : Chargement de fichiers locaux
-   - `loadDemoAudio()` : Chargement audio de démo
-   - `loadDemoCinema()` : Chargement vidéo de démo
+1. **🎮 Méthodes statiques** (lignes 10-204)
+   - `initDemoPage()` : 🎬 Initialisation de la page de démo
+   - `setupDemoEvents()` : ⚙️ Configuration des événements de démo
+   - `loadLocalFile()` : 📁 Chargement de fichiers locaux
+   - `loadDemoAudio()` : 🎵 Chargement audio de démo
+   - `loadDemoCinema()` : 🎬 Chargement vidéo de démo
 
-2. **Constructeur et initialisation** (lignes 209-256)
-   - `constructor()` : Initialisation de l'instance
-   - `init()` : Configuration du mode et chargement initial
+2. **🏗️ Constructeur et initialisation** (lignes 209-256)
+   - `constructor()` : 🔨 Initialisation de l'instance
+   - `init()` : 🚀 Configuration du mode et chargement initial
 
-3. **Génération HTML/CSS** (lignes 258-887)
-   - `_buildPlayerHTML()` : Génération du HTML du lecteur
-   - `_getPlayerCSS()` : Génération du CSS inline
+3. **🎨 Génération HTML/CSS** (lignes 258-887)
+   - `_buildPlayerHTML()` : 📝 Génération du HTML du lecteur
+   - `_getPlayerCSS()` : 🎨 Génération du CSS inline
 
-4. **Gestion du DOM** (lignes 889-1006)
-   - `createContainer()` : Création du conteneur principal
-   - `setupEventListeners()` : Configuration des événements
+4. **🌳 Gestion du DOM** (lignes 889-1006)
+   - `createContainer()` : 📦 Création du conteneur principal
+   - `setupEventListeners()` : 👂 Configuration des événements
 
-5. **Gestion des médias** (lignes 1008-1418)
-   - `loadMedia()` : Chargement des fichiers média
-   - `_setupMediaEvents()` : Configuration des événements média
-   - `_cleanupMediaElement()` : Nettoyage des ressources
+5. **📺 Gestion des médias** (lignes 1008-1418)
+   - `loadMedia()` : 📥 Chargement des fichiers média
+   - `_setupMediaEvents()` : 🎧 Configuration des événements média
+   - `_cleanupMediaElement()` : 🧹 Nettoyage des ressources
 
-6. **Contrôles de lecture** (lignes 1420-1503)
-   - `play()`, `pause()`, `stop()`, `seek()`, etc.
-   - `updateProgress()`, `updateTimeDisplay()`, etc.
+6. **⏯️ Contrôles de lecture** (lignes 1420-1503)
+   - `play()`, `pause()`, `stop()`, `seek()`, etc. ▶️⏸️⏹️⏩
+   - `updateProgress()`, `updateTimeDisplay()`, etc. 📊⏱️
 
-7. **Synchronisation** (lignes 1505-1531)
-   - `startSync()`, `stopSync()`, `handleSync()`
+7. **🔄 Synchronisation** (lignes 1505-1531)
+   - `startSync()`, `stopSync()`, `handleSync()` ▶️⏹️📡
 
-8. **Interface utilisateur** (lignes 1533-1611)
-   - `toggleChat()`, `toggleFullscreen()`, `showInfo()`, etc.
+8. **🎨 Interface utilisateur** (lignes 1533-1611)
+   - `toggleChat()`, `toggleFullscreen()`, `showInfo()`, etc. 💬🖥️ℹ️
 
-9. **Métadonnées et couvertures** (lignes 1238-1760)
-   - `updateMediaInfo()` : Mise à jour des informations
-   - `_parseFileName()` : Parsing intelligent des noms
-   - `fetchCoverArt()` : Récupération des couvertures
-   - `_fetchIMDBCover()` : Récupération via OMDB
-   - `_fetchMusicBrainzCover()` : Récupération via MusicBrainz
+9. **📋 Métadonnées et couvertures** (lignes 1238-1760)
+   - `updateMediaInfo()` : 📝 Mise à jour des informations
+   - `_parseFileName()` : 🔍 Parsing intelligent des noms
+   - `fetchCoverArt()` : 🖼️ Récupération des couvertures
+   - `_fetchIMDBCover()` : 🎬 Récupération via OMDB
+   - `_fetchMusicBrainzCover()` : 🎵 Récupération via MusicBrainz
 
-10. **Lyrics** (lignes 1762-1949)
-    - `toggleLyrics()` : Affichage/masquage
-    - `fetchLyrics()` : Récupération via MusicMatch
-    - `loadAndShowLyrics()` : Chargement et affichage
+10. **🎤 Lyrics** (lignes 1762-1949)
+    - `toggleLyrics()` : 👁️ Affichage/masquage
+    - `fetchLyrics()` : 🔍 Récupération via MusicMatch
+    - `loadAndShowLyrics()` : 📥 Chargement et affichage
 
-11. **Nettoyage** (lignes 1951-2000)
-    - `destroy()` : Destruction complète de l'instance
-    - `handleLeave()` : Gestion de la sortie
+11. **🧹 Nettoyage** (lignes 1951-2000)
+    - `destroy()` : 🗑️ Destruction complète de l'instance
+    - `handleLeave()` : 🚪 Gestion de la sortie
 
-### État interne
+### 📊 État interne
 
 L'objet `state` contient :
 
@@ -977,64 +980,64 @@ L'objet `state` contient :
 
 ## 🔧 Personnalisation
 
-### CSS
+### 🎨 CSS
 
 Le CSS est généré dynamiquement via `_getPlayerCSS()` et inclus directement dans le JavaScript. Pour personnaliser :
 
-**Modifier directement dans le code** : Éditez la méthode `_getPlayerCSS()` (lignes 377-887) dans le fichier `EvoMediaPlayer.js`
+> ✏️ **Modifier directement dans le code** : Éditez la méthode `_getPlayerCSS()` (lignes 377-887) dans le fichier `EvoMediaPlayer.js`
 
-### Parsing des noms de fichiers
+### 🔍 Parsing des noms de fichiers
 
 Le lecteur parse automatiquement les noms de fichiers pour extraire :
-- Artiste et titre (format : `Artiste - Titre`)
-- Informations de qualité (720P, 1080P, WEBRIP, etc.)
-- Année de sortie
+- 🎤 Artiste et titre (format : `Artiste - Titre`)
+- 📺 Informations de qualité (720P, 1080P, WEBRIP, etc.)
+- 📅 Année de sortie
 
-**Formats supportés :**
-- `Artiste - Titre.mp3`
-- `Artiste – Titre (Année).mp3`
-- `Film (2024) 1080P.mp4`
+**📋 Formats supportés :**
+- `Artiste - Titre.mp3` 🎵
+- `Artiste – Titre (Année).mp3` 🎵
+- `Film (2024) 1080P.mp4` 🎬
 
 ---
 
 ## ⚠️ Notes importantes
 
-1. **Mode Cinema** : Nécessite Socket.IO pour la synchronisation entre utilisateurs
-2. **Mode Audio** : Fonctionne sans Socket.IO
-3. **Couvertures** : La récupération automatique nécessite des clés API (OMDB pour vidéos, MusicBrainz pour audio)
-4. **Lyrics** : Nécessite une clé API MusicMatch configurée
-5. **Responsive** : Le lecteur est entièrement responsive et s'adapte aux mobiles
-6. **Nettoyage** : Toujours appeler `destroy()` avant de créer une nouvelle instance
-7. **Blob URLs** : Les URLs blob sont automatiquement nettoyées lors du `destroy()`
-8. **Rate limiting** : MusicBrainz API limitée à 1 requête/seconde
+1. **🎬 Mode Cinema** : Nécessite Socket.IO pour la synchronisation entre utilisateurs
+2. **🎵 Mode Audio** : Fonctionne sans Socket.IO
+3. **🖼️ Couvertures** : La récupération automatique nécessite des clés API (OMDB pour vidéos, MusicBrainz pour audio)
+4. **🎤 Lyrics** : Nécessite une clé API MusicMatch configurée
+5. **📱 Responsive** : Le lecteur est entièrement responsive et s'adapte aux mobiles
+6. **🧹 Nettoyage** : Toujours appeler `destroy()` avant de créer une nouvelle instance
+7. **🔗 Blob URLs** : Les URLs blob sont automatiquement nettoyées lors du `destroy()`
+8. **⏱️ Rate limiting** : MusicBrainz API limitée à 1 requête/seconde
 
 ---
 
 ## 🐛 Dépannage
 
-### Le média ne se charge pas
+### ❌ Le média ne se charge pas
 
-- Vérifiez que le `fileData` contient `downloadUrl` ou `data`
-- Vérifiez le type MIME du fichier
-- Consultez la console pour les erreurs
+- ✅ Vérifiez que le `fileData` contient `downloadUrl` ou `data`
+- ✅ Vérifiez le type MIME du fichier
+- 🔍 Consultez la console pour les erreurs
 
-### La synchronisation ne fonctionne pas
+### 🔄 La synchronisation ne fonctionne pas
 
-- Vérifiez que Socket.IO est correctement initialisé
-- Vérifiez que `isHost` est correctement défini
-- Vérifiez les événements Socket.IO (`cinema-sync`, `cinema-sync-received`)
+- ✅ Vérifiez que Socket.IO est correctement initialisé
+- ✅ Vérifiez que `isHost` est correctement défini
+- ✅ Vérifiez les événements Socket.IO (`cinema-sync`, `cinema-sync-received`)
 
-### Les couvertures ne s'affichent pas
+### 🖼️ Les couvertures ne s'affichent pas
 
-- Vérifiez votre connexion internet
-- Vérifiez que les métadonnées (titre, artiste) sont correctes
-- Consultez la console pour les erreurs API
+- 🌐 Vérifiez votre connexion internet
+- ✅ Vérifiez que les métadonnées (titre, artiste) sont correctes
+- 🔍 Consultez la console pour les erreurs API
 
-### Les lyrics ne s'affichent pas
+### 🎤 Les lyrics ne s'affichent pas
 
-- Vérifiez que la clé API MusicMatch est configurée
-- Vérifiez que les métadonnées (artiste, titre) sont correctes
-- Les proxies CORS peuvent être temporairement indisponibles
+- 🔑 Vérifiez que la clé API MusicMatch est configurée
+- ✅ Vérifiez que les métadonnées (artiste, titre) sont correctes
+- ⚠️ Les proxies CORS peuvent être temporairement indisponibles
 
 ---
 
@@ -1046,13 +1049,13 @@ Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.
+Les contributions sont les bienvenues ! 🎉 N'hésitez pas à ouvrir une issue ou une pull request.
 
 ---
 
 ## 📧 Support
 
-Pour toute question ou problème, consultez le code source ou contactez le développeur principal.
+Pour toute question ou problème, consultez le code source ou contactez le développeur principal. 💬
 
 ---
 
